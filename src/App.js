@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Displayphotos from './Displayphotos';
 import Form from './Form';
+import Footer from './Footer';
 
 function App() {
   const [allphotos, setAllphotos ] = useState([]);
@@ -33,7 +34,7 @@ function App() {
               orientation = "landscape"
             }
             // everything else will remain square-ish
-            console.log(orientation);
+            // console.log(orientation);
             //return a new object that contains al the data of the original photoObject  but now also include the orientation property, adding new property in an object called orientation and give value orientation i.e landscape or square , portrait, spread opertor copy photoObject and add new property orientation
             return {...photoObject, orientation : orientation}
         })
@@ -44,7 +45,7 @@ function App() {
 
   const getPhotos = (event, orientationChoice) =>{
     event.preventDefault();
-    console.log(orientationChoice)
+    // console.log(orientationChoice)
 
     const filterArray  = allphotos.filter(photo =>{
       return photo.orientation === orientationChoice
@@ -56,11 +57,12 @@ function App() {
 
   return (
     <div className="App">
-      <header class="headerImage">
-       <h1>Images Collections</h1>
+      <header>
+       <h1>Puppy's Images Collection</h1>
        </header>
        <Form getPhotos={getPhotos} />
        <Displayphotos photos={filteredPhotos} />
+       <Footer />
     </div>
   );
   }

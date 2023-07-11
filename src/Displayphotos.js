@@ -2,10 +2,11 @@
 // create some logic to check if there are actually images to display and if there aren't let the user know, otherwise dispplay the photos  
 function Displayphotos({photos}){
     return(
+        <div className="wrapper">
         <section>
             <h2>Here Are your photos </h2>
             {
-                photos.length === 0 ? ( <h3>Sorry, no photos today</h3>) 
+                photos.length === 0 ? ( <h3>Select your option</h3>) 
                 :<ul className="photos"> 
                      {
                         photos.map(singlephoto => {
@@ -19,6 +20,7 @@ function Displayphotos({photos}){
                 </ul>
             }
         </section>
+        </div>
     )
 }
 export default Displayphotos;

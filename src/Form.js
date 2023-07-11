@@ -10,7 +10,8 @@ function Form({getPhotos}){
     }
     
     return(
-    <form onSubmit={(event) => getPhotos(event, userChoice)}>
+    <div className='wrapper'>
+    <form className="formSelect" onSubmit={(event) => getPhotos(event, userChoice)}>
         <label htmlFor="photoOrientation">Show me photos that are:</label>
         <select id="photoOrientation" name="photoOrientation" onChange={handleUserChoice} value={userChoice}>
         <option value="" disabled>Pick one:</option>
@@ -20,6 +21,7 @@ function Form({getPhotos}){
       </select>
       <button type="submit">Give me photos!</button>
     </form> 
+    </div>
     )
 }
 export default Form;

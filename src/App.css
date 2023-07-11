@@ -16,27 +16,55 @@ body {
   background-color: #c9c0b7;
   font-family: 'Work Sans', monospace;
   font-weight: 300;
+  overflow-x: hidden;
+}
+
+
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 header {
   width: 100%;
-height: 33vh;
-/* background: url('./sq-lim-k4vhuUHv08o-unsplash\(1\).jpg');
+height: 50vh;
+background: url('./sq-lim-k4vhuUHv08o-unsplash\(1\).jpg');
 margin-top: -33px;
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center;
-} */
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin-bottom: 10px;
+}
+
+.wrapper{
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 90%;
 }
 
 form {
   padding-bottom: 30px;
 }
 
+.formSelect{
+  border: double 3px black;
+  border-radius: 15px;
+  margin: 20px 0;
+  padding: 20px;
+}
+
 h1 {
   font-size: 3rem;
   font-weight: 500;
   text-transform: uppercase;
+  color: white;
+  align-items: center;
 }
 
 h2 {
@@ -46,22 +74,36 @@ h2 {
 
 .photos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
     margin: 20px 5%;
+    grid-gap:10px;
+    list-style-type: none;
 }
 
-.photo-container {
+.photo-container{
+  overflow-x: hidden;
+  position: relative;
+  border-radius: 8px;
+}
+
+/* .photo-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 18px;
+    padding: 8px;
     background: white;
-}
+    flex-wrap: wrap;
+} */
 
-img {
-    display: block;
+li img {
+    object-fit: cover;
     max-width: 100%;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+li img:hover{
+  transition: 0.5s;
 }
 
 select {
@@ -102,3 +144,22 @@ button:focus {
 button:active {
   opacity: 0.7;
 }
+
+footer{
+  background-color: black;
+color: #d3d3d3;
+margin-top: 80px;
+padding: 10px;
+
+}
+
+footer a {
+ 
+  text-decoration: none;
+  color: #d3d3d3;
+  padding: 10px;
+
+}
+/* footer h4{
+ text-align: right;
+} */

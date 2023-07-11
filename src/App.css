@@ -24,7 +24,31 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* align-items: center; */
   min-height: 100vh;
+}
+
+.appLoading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 45%;
+  position: fixed;
+  left: 45%;
+}
+
+.loading-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 20vmin;
+  height: 20vmin;
+  border-radius: 50%;
+  animation: loading 1s ease-in-out infinite alternate;
 }
 
 header {

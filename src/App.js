@@ -5,13 +5,21 @@ import axios from 'axios';
 import Displayphotos from './Displayphotos';
 import Form from './Form';
 import Footer from './Footer';
+import RingLoader from "react-spinners/RingLoader";
 
 function App() {
+  const [loading, setloading]= useState(false);
+  
   const [allphotos, setAllphotos ] = useState([]);
   //use useEffect to handle our axios call
   const[filteredPhotos, setfilteredPhotos] = useState([]);
 
   useEffect( () => {
+      setloading(true)
+      setTimeout( ()=> {
+        setloading(false)
+      },3000);
+
       axios({
         url : "https://api.unsplash.com/search/photos",
         params :{
@@ -57,12 +65,30 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-       <h1>Puppy's Images Collection</h1>
+
+      {
+        loading 
+        ? 
+        <div className="appLoading">
+        <RingLoader
+        color={"#000000"}
+        loading={loading}
+        size={80}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      </div>
+        : (
+          <>
+        <header>
+        <h1>Puppy's Images Collection</h1>
        </header>
+       
        <Form getPhotos={getPhotos} />
        <Displayphotos photos={filteredPhotos} />
        <Footer />
+      </>
+  )}
     </div>
   );
   }

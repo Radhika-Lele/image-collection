@@ -6,7 +6,7 @@ function Displayphotos({photos}){
         <section>
             <h2>Here Are your photos </h2>
             {
-                photos.length === 0 ? ( <h3>Select your option</h3>) 
+                photos.length === 0 ? ( <h3>Please select your option</h3>) 
                 :<ul className="photos"> 
                      {
                         photos.map(singlephoto => {

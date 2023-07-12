@@ -1,18 +1,20 @@
-// this componenet will handle displaying our photos
-// create some logic to check if there are actually images to display and if there aren't let the user know, otherwise dispplay the photos  
-function Displayphotos({photos}){
+ 
+
+function Displayphotos({photos, handleClick}){
     return(
+        <div> 
         <div className="wrapper">
         <section>
             {
                 photos.length === 0 ? ( <h3>Please select your option</h3>) 
                 :<>
                 <h3>Here Are your photos </h3>
+                <h4>Select an image to pop up</h4>
                 <ul className="photos"> 
                      {
                         photos.map(singlephoto => {
                             return(
-                                <li className="photo-container" key={singlephoto.id}>
+                                <li className="photo-container" key={singlephoto.id} onClick={() => handleClick(singlephoto.urls.regular) }> 
                                     <img src={singlephoto.urls.regular} alt={singlephoto.alt_description} />
                                 </li>
                             )
@@ -22,6 +24,7 @@ function Displayphotos({photos}){
                 </>
             }
         </section>
+        </div>
         </div>
     )
 }

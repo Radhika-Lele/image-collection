@@ -9,14 +9,28 @@ import RingLoader from "react-spinners/RingLoader";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
 
+
 function App() {
   const [loading, setloading]= useState(false);
-  
   const [allphotos, setAllphotos ] = useState([]);
+  const [photos, setPhotos] = useState([]);
+  const [selectedImage, setSelectedImage] = useState('');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   //use useEffect to handle our axios call
   const[filteredPhotos, setfilteredPhotos] = useState([]);
 
   const [apiLoading, setApiLoading] = useState(false);
+
+  const handleClick = (imageSrc) => {
+    setSelectedImage(imageSrc);
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
 
   useEffect( () => {
       setloading(true)
@@ -29,7 +43,7 @@ function App() {
         params :{
           client_id : 'qcKwXaLi80rZriRV-fbZSDodo-FUfhOAI6tD4t8jCMg',
           query: "puppies",
-          per_page : 30
+          per_page : 50
         }
       }
       ).then( results => {
@@ -53,7 +67,9 @@ function App() {
             return {...photoObject, orientation : orientation}
         })
         // console.log(withOrientation);  it will give new array and it has property orientation
+        setPhotos(apiResults);
         setAllphotos(withOrientation)
+        
       })
   }, []);
 
@@ -63,12 +79,11 @@ function App() {
       setApiLoading(false)
     },500);
     event.preventDefault();
-    // console.log(orientationChoice)
 
     const filterArray  = allphotos.filter(photo =>{
       return photo.orientation === orientationChoice
     })
-    // console.log(filterArray)
+  
     setfilteredPhotos(filterArray);
     // React Spinner foir API call
  
@@ -105,7 +120,14 @@ function App() {
      </header>
      
      <Form getPhotos={getPhotos} />
-     <Displayphotos photos={filteredPhotos} />
+     {isPopupOpen && (
+        <div className="popupImage">
+          <span onClick={handleClosePopup}>Close</span>
+          <img src={selectedImage} alt="Popup" />
+        </div>
+      )}
+
+     <Displayphotos photos={filteredPhotos} handleClick={handleClick} photo={photos}/>
      <Footer />
      </div>
     );

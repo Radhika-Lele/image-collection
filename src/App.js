@@ -16,7 +16,7 @@ function App() {
   //use useEffect to handle our axios call
   const[filteredPhotos, setfilteredPhotos] = useState([]);
 
-  const [apiLoading, setApiLoading] = useState(true);
+  const [apiLoading, setApiLoading] = useState(false);
 
   useEffect( () => {
       setloading(true)

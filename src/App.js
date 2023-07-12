@@ -6,6 +6,8 @@ import Displayphotos from './Displayphotos';
 import Form from './Form';
 import Footer from './Footer';
 import RingLoader from "react-spinners/RingLoader";
+import { PacmanLoader } from 'react-spinners';
+
 
 function App() {
   const [loading, setloading]= useState(false);
@@ -13,6 +15,8 @@ function App() {
   const [allphotos, setAllphotos ] = useState([]);
   //use useEffect to handle our axios call
   const[filteredPhotos, setfilteredPhotos] = useState([]);
+
+  const [apiLoading, setApiLoading] = useState(true);
 
   useEffect( () => {
       setloading(true)
@@ -27,7 +31,9 @@ function App() {
           query: "puppies",
           per_page : 30
         }
-      }).then( results => {
+      }
+      ).then( results => {
+        
         //  console.log(results.data.results);  this gives us array of 30 storing in a variable , dont have orientation property
         const apiResults = results.data.results;
         const withOrientation = apiResults.map( (photoObject) =>{
@@ -52,6 +58,10 @@ function App() {
   }, []);
 
   const getPhotos = (event, orientationChoice) =>{
+    setApiLoading(true)
+    setTimeout( ()=> {
+      setApiLoading(false)
+    },500);
     event.preventDefault();
     // console.log(orientationChoice)
 
@@ -60,15 +70,14 @@ function App() {
     })
     // console.log(filterArray)
     setfilteredPhotos(filterArray);
+    // React Spinner foir API call
+ 
     }
   
-
-  return (
-    <div className="App">
-
-      {
-        loading 
-        ? 
+  if(loading)
+  {
+    return(
+      <div className="App">
         <div className="appLoading">
         <RingLoader
         color={"#000000"}
@@ -77,20 +86,31 @@ function App() {
         aria-label="Loading Spinner"
         data-testid="loader"
       />
+        </div>
       </div>
-        : (
-          <>
-        <header>
-        <h1>Puppy's Images Collection</h1>
-       </header>
-       
-       <Form getPhotos={getPhotos} />
-       <Displayphotos photos={filteredPhotos} />
-       <Footer />
-      </>
-  )}
-    </div>
-  );
+    );
+  }
+  else if(apiLoading)
+  {
+    return(
+      <div className="appLoading">
+        <PacmanLoader color="#000" size={50} /></div>);
+        
+  }
+  else{
+    return(
+      <>
+      <header>
+      <h1>Puppy's Images Collection</h1>
+     </header>
+     
+     <Form getPhotos={getPhotos} />
+     <Displayphotos photos={filteredPhotos} />
+     <Footer />
+    </>
+    );
+  }
+
   }
 
 export default App;

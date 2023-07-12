@@ -99,15 +99,15 @@ function App() {
   }
   else{
     return(
-      <>
+      <div className="App">
       <header>
-      <h1>Puppy's Images Collection</h1>
+      <h1>Puppy Image Collection</h1>
      </header>
      
      <Form getPhotos={getPhotos} />
      <Displayphotos photos={filteredPhotos} />
      <Footer />
-    </>
+     </div>
     );
   }
 

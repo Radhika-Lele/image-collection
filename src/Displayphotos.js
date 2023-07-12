@@ -4,10 +4,11 @@ function Displayphotos({photos}){
     return(
         <div className="wrapper">
         <section>
-            <h2>Here Are your photos </h2>
             {
                 photos.length === 0 ? ( <h3>Please select your option</h3>) 
-                :<ul className="photos"> 
+                :<>
+                <h3>Here Are your photos </h3>
+                <ul className="photos"> 
                      {
                         photos.map(singlephoto => {
                             return(
@@ -18,6 +19,7 @@ function Displayphotos({photos}){
                         })
                      }
                 </ul>
+                </>
             }
         </section>
         </div>

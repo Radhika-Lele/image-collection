@@ -6,7 +6,7 @@ import Displayphotos from './Displayphotos';
 import Form from './Form';
 import Footer from './Footer';
 import RingLoader from "react-spinners/RingLoader";
-import { PacmanLoader } from 'react-spinners';
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 
 function App() {
